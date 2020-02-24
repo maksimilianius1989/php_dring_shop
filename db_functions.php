@@ -12,7 +12,7 @@ class DB_Functions {
     
     public function checkExistsUser($phone)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM User WHERE Phone=?");
+        $stmt = $this->conn->prepare("SELECT * FROM user WHERE Phone=?");
         $stmt->bind_param("s", $phone);
         $stmt->execute();
         $stmt->store_result();
@@ -28,13 +28,16 @@ class DB_Functions {
     
     public function registerNewUser($phone, $name, $birthdate, $address)
     {
-        $stmt = $this->conn->prepare("INSERT INTO User (Phone, Name, Brithdate, Address) VALUE (?,?,?,?)");
+        $stmt = $this->conn->prepare("INSERT INTO user (Phone, Name, Birthdate, Address) VALUES (?,?,?,?)");
+        if (!$stmt) {
+            var_dump($this->conn->error_list);
+        }
         $stmt->bind_param("ssss", $phone, $name, $birthdate, $address);
         $result = $stmt->execute();
         $stmt->close();
 
         if ($result) {
-            $stmt = $this->conn->prepare("SELECT * FROM User WHERE Phone = ?");
+            $stmt = $this->conn->prepare("SELECT * FROM user WHERE Phone = ?");
             $stmt->bind_param("s", $phone);
             $stmt->execute();
             $user = $stmt->get_result()->fetch_assoc();
