@@ -47,4 +47,18 @@ class DB_Functions {
             return false;
         }
     }
+
+    public function getUserInformation($phone)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM user WHERE Phone=?");
+        $stmt->bind_param("s", $phone);
+
+        if ($stmt->execute()) {
+            $user = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $user;
+        } else {
+            return null;
+        }
+    }
 }
