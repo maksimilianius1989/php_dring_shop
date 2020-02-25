@@ -5,8 +5,8 @@ $db = new DB_Functions();
 
 $response = [];
 
-if (isset($_POST['phone2'])) {
-    $phone = $_POST['phone2'];
+if (isset($_POST['phone'])) {
+    $phone = $_POST['phone'];
 
     $user = $db->getUserInformation($phone);
     if ($user) {
