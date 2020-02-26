@@ -61,4 +61,17 @@ class DB_Functions {
             return null;
         }
     }
+
+    public function getBanners()
+    {
+        $result = $this->conn->query("SELECT * FROM banner ORDER BY ID LIMIT 3");
+
+        $banners = [];
+
+        while ($item = $result->fetch_assoc()) {
+            $banners[] = $item;
+        }
+
+        return $banners;
+    }
 }
