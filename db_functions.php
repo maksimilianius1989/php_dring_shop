@@ -87,4 +87,18 @@ class DB_Functions {
 
         return $menu;
     }
+
+    public function getDrinkByMenuID($menuId)
+    {
+        $query = "SELECT * FROM drink WHERE MenuId = " . $menuId;
+        $result = $this->conn->query($query);
+
+        $drinks = [];
+
+        while ($item = $result->fetch_assoc()) {
+            $drinks[] = $item;
+        }
+
+        return $drinks;
+    }
 }
