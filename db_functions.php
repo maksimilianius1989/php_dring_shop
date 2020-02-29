@@ -101,4 +101,9 @@ class DB_Functions {
 
         return $drinks;
     }
+
+    public function updateAvatar($phone, $fileName)
+    {
+        return $this->conn->query("UPDATE user SET avatarUrl='$fileName' WHERE Phone='$phone'");
+    }
 }
