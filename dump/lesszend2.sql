@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 29 2020 г., 08:05
+-- Время создания: Мар 01 2020 г., 21:24
 -- Версия сервера: 10.3.22-MariaDB-54+deb10u1
 -- Версия PHP: 7.1.33
 
@@ -109,6 +109,30 @@ INSERT INTO `menu` (`ID`, `Name`, `Link`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `order`
+--
+
+CREATE TABLE `order` (
+  `OrderId` bigint(20) NOT NULL,
+  `OrderStatus` tinyint(4) NOT NULL,
+  `OrderPrice` float NOT NULL,
+  `OrderDetail` text NOT NULL,
+  `OrderComment` text NOT NULL,
+  `OrderAddress` text NOT NULL,
+  `UserPhone` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `order`
+--
+
+INSERT INTO `order` (`OrderId`, `OrderStatus`, `OrderPrice`, `OrderDetail`, `OrderComment`, `OrderAddress`, `UserPhone`) VALUES
+(1, 0, 1.1, 'orderDetail', 'comment', 'address', '1234567892'),
+(2, 0, 1.1, 'orderDetail', 'comment', 'address', '1234567892');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `user`
 --
 
@@ -125,7 +149,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`Phone`, `avatarUrl`, `Name`, `Birthdate`, `Address`) VALUES
-('1234567892', NULL, 'макс', '0000-00-00', 'ивановка');
+('1234567892', '1234567892.png', 'макс', '0000-00-00', 'ивановка');
 
 --
 -- Индексы сохранённых таблиц
@@ -149,6 +173,12 @@ ALTER TABLE `drink`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Индексы таблицы `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`OrderId`);
 
 --
 -- Индексы таблицы `user`
@@ -175,6 +205,11 @@ ALTER TABLE `drink`
 --
 ALTER TABLE `menu`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT для таблицы `order`
+--
+ALTER TABLE `order`
+  MODIFY `OrderId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
